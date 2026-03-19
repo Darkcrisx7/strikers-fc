@@ -42,6 +42,8 @@ def load_data():
             "2025-02-22":["Marcus Johnson","Kofi Mensah","Ade Williams","Tunde Balogun","Emeka Nwosu","Seun Adeyemi","Chidi Okeke"],
             "2025-03-01":["Marcus Johnson","Dele Okafor","Kofi Mensah","Ade Williams","Emeka Nwosu","Seun Adeyemi","Chidi Okeke"],
         },
+        "sponsors": [],
+        "news": [],
         "next_id": 9
     }
 
@@ -175,6 +177,84 @@ def update_attendance():
     data = load_data()
     body = request.json
     data['attendance'][body['date']] = body['players']
+    save_data(data)
+    return jsonify({'ok': True})
+
+# ── Sponsors API ─────────────────────────────────────────────────
+@app.route('/api/sponsors', methods=['POST'])
+@admin_required
+def add_sponsor():
+    data = load_data()
+    if 'sponsors' not in data:
+        data['sponsors'] = []
+    s = request.json
+    s['id'] = data['next_id']
+    data['sponsors'].append(s)
+    data['next_id'] += 1
+    save_data(data)
+    return jsonify(s), 201
+
+@app.route('/api/sponsors/<int:sid>', methods=['PUT'])
+@admin_required
+def update_sponsor(sid):
+    data = load_data()
+    if 'sponsors' not in data:
+        data['sponsors'] = []
+    for i, s in enumerate(data['sponsors']):
+        if s['id'] == sid:
+            data['sponsors'][i].update(request.json)
+            data['sponsors'][i]['id'] = sid
+            save_data(data)
+            return jsonify(data['sponsors'][i])
+    return jsonify({'error': 'Not found'}), 404
+
+@app.route('/api/sponsors/<int:sid>', methods=['DELETE'])
+@admin_required
+def delete_sponsor(sid):
+    data = load_data()
+    if 'sponsors' not in data:
+        data['sponsors'] = []
+    data['sponsors'] = [s for s in data['sponsors'] if s['id'] != sid]
+    save_data(data)
+    return jsonify({'ok': True})
+
+# ── News API ─────────────────────────────────────────────────────
+@app.route('/api/news', methods=['POST'])
+@admin_required
+def add_news():
+    data = load_data()
+    if 'news' not in data:
+        data['news'] = []
+    n = request.json
+    n['id'] = data['next_id']
+    from datetime import date
+    n.setdefault('date', date.today().isoformat())
+    data['news'].insert(0, n)
+    data['next_id'] += 1
+    save_data(data)
+    return jsonify(n), 201
+
+@app.route('/api/news/<int:nid>', methods=['PUT'])
+@admin_required
+def update_news(nid):
+    data = load_data()
+    if 'news' not in data:
+        data['news'] = []
+    for i, n in enumerate(data['news']):
+        if n['id'] == nid:
+            data['news'][i].update(request.json)
+            data['news'][i]['id'] = nid
+            save_data(data)
+            return jsonify(data['news'][i])
+    return jsonify({'error': 'Not found'}), 404
+
+@app.route('/api/news/<int:nid>', methods=['DELETE'])
+@admin_required
+def delete_news(nid):
+    data = load_data()
+    if 'news' not in data:
+        data['news'] = []
+    data['news'] = [n for n in data['news'] if n['id'] != nid]
     save_data(data)
     return jsonify({'ok': True})
 
