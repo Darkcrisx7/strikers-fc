@@ -8,307 +8,195 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --navy: #1a3a5c;
-    --navy-dark: #0f2540;
-    --gold: #f5c518;
-    --gold-glow: rgba(245,197,24,0.2);
-    --black: #0A0A0A;
-    --dark: #0e1a26;
-    --card: #132030;
-    --card2: #1a2d42;
-    --border: rgba(245,197,24,0.12);
-    --border2: rgba(255,255,255,0.07);
-    --text: #e8f0f8;
-    --muted: #7a96b0;
-    --white: #fff;
-    --red: #FF4444;
-    --green: #22c55e;
-    --yellow: #f5c518;
+    --navy: #1a3a5c; --navy-dark: #0f2540; --gold: #f5c518;
+    --gold-glow: rgba(245,197,24,0.2); --black: #0A0A0A; --dark: #0e1a26;
+    --card: #132030; --card2: #1a2d42; --border: rgba(245,197,24,0.12);
+    --border2: rgba(255,255,255,0.07); --text: #e8f0f8; --muted: #7a96b0;
+    --white: #fff; --red: #FF4444; --green: #22c55e; --yellow: #f5c518;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    background: var(--black);
-    color: var(--text);
-    font-family: 'Barlow', sans-serif;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+  body { background: var(--black); color: var(--text); font-family: 'Barlow', sans-serif; min-height: 100vh; overflow-x: hidden; }
 
-  /* ── SIDEBAR ── */
-  .sidebar {
-    position: fixed; top: 0; left: 0; height: 100vh;
-    width: 76px; background: var(--dark);
-    border-right: 1px solid var(--border);
-    display: flex; flex-direction: column; align-items: center;
-    padding: 16px 0 20px; z-index: 100; gap: 6px;
-  }
-  .sidebar-logo {
-    width: 52px; height: 52px; margin-bottom: 20px;
-    border-radius: 50%; overflow: hidden;
-    border: 2px solid var(--gold);
-    box-shadow: 0 0 16px var(--gold-glow);
-    flex-shrink: 0;
-  }
+  /* SIDEBAR */
+  .sidebar { position: fixed; top: 0; left: 0; height: 100vh; width: 76px; background: var(--dark); border-right: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; padding: 16px 0 20px; z-index: 100; gap: 4px; }
+  .sidebar-logo { width: 52px; height: 52px; margin-bottom: 16px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); box-shadow: 0 0 16px var(--gold-glow); flex-shrink: 0; }
   .sidebar-logo img { width: 100%; height: 100%; object-fit: cover; background: #0a1828; }
-  .nav-btn {
-    width: 50px; height: 50px; border-radius: 13px;
-    border: none; background: transparent; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--muted); transition: all 0.2s; font-size: 21px;
-    position: relative;
-  }
+  .nav-btn { width: 50px; height: 50px; border-radius: 13px; border: none; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--muted); transition: all 0.2s; font-size: 20px; position: relative; }
   .nav-btn:hover { background: rgba(245,197,24,0.08); color: var(--white); }
   .nav-btn.active { background: var(--gold-glow); color: var(--gold); }
-  .nav-btn .tip {
-    position: absolute; left: 62px;
-    background: var(--card2); color: var(--text);
-    padding: 6px 12px; border-radius: 8px; font-size: 13px;
-    white-space: nowrap; opacity: 0; pointer-events: none;
-    transition: opacity 0.2s; font-weight: 600;
-    border: 1px solid var(--border);
-  }
+  .nav-btn .tip { position: absolute; left: 62px; background: var(--card2); color: var(--text); padding: 6px 12px; border-radius: 8px; font-size: 13px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; font-weight: 600; border: 1px solid var(--border); z-index: 200; }
   .nav-btn:hover .tip { opacity: 1; }
   .sidebar-bottom { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .admin-dot {
-    width: 8px; height: 8px; border-radius: 50%; background: var(--green);
-    box-shadow: 0 0 6px var(--green); margin-bottom: 4px;
-  }
+  .admin-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); margin-bottom: 4px; }
 
-  /* ── MAIN ── */
+  /* MAIN */
   .main { margin-left: 76px; padding: 32px; min-height: 100vh; }
 
-  /* ── VIEW-ONLY BANNER ── */
-  .view-only-bar {
-    background: linear-gradient(90deg, rgba(245,197,24,0.08), rgba(245,197,24,0.04));
-    border: 1px solid var(--border);
-    border-radius: 12px; padding: 10px 18px;
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 24px; font-size: 13px; color: var(--muted);
-  }
+  /* VIEW-ONLY BAR */
+  .view-only-bar { background: linear-gradient(90deg, rgba(245,197,24,0.08), rgba(245,197,24,0.04)); border: 1px solid var(--border); border-radius: 12px; padding: 10px 18px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; font-size: 13px; color: var(--muted); }
   .view-only-bar span { color: var(--gold); font-weight: 700; }
 
-  /* ── PAGE HEADER ── */
-  .page-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 28px;
-  }
+  /* PAGE HEADER */
+  .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
   .page-title { font-family: 'Bebas Neue'; font-size: 46px; letter-spacing: 2px; line-height: 1; }
   .page-subtitle { color: var(--muted); font-size: 13px; margin-top: 4px; }
 
-  /* ── SECTIONS ── */
+  /* SECTIONS */
   .section { display: none; }
   .section.active { display: block; }
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1a3a5c 100%);
-    border: 1px solid var(--border);
-    border-radius: 22px; padding: 36px 40px;
-    margin-bottom: 24px; position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .hero::before {
-    content: ''; position: absolute; right: -80px; top: -80px;
-    width: 320px; height: 320px;
-    background: radial-gradient(circle, rgba(245,197,24,0.1) 0%, transparent 70%);
-  }
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1a3a5c 100%); border: 1px solid var(--border); border-radius: 22px; padding: 36px 40px; margin-bottom: 24px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; }
+  .hero::before { content: ''; position: absolute; right: -80px; top: -80px; width: 320px; height: 320px; background: radial-gradient(circle, rgba(245,197,24,0.1) 0%, transparent 70%); }
   .hero-club { font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: var(--gold); margin-bottom: 6px; }
   .hero-name { font-family: 'Bebas Neue'; font-size: 62px; line-height: 0.95; letter-spacing: 2px; }
   .hero-tag { color: var(--muted); margin-top: 10px; font-size: 14px; }
   .hero-logo { width: 130px; height: 130px; object-fit: contain; z-index:1; filter: drop-shadow(0 0 20px rgba(245,197,24,0.3)); }
 
-  /* ── STAT CARDS ── */
+  /* STAT CARDS */
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 14px; margin-bottom: 28px; }
-  .stat-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 18px; text-align: center; transition: transform 0.2s;
-  }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px; text-align: center; transition: transform 0.2s; }
   .stat-card:hover { transform: translateY(-2px); }
   .stat-num { font-family: 'Bebas Neue'; font-size: 50px; line-height: 1; color: var(--gold); }
   .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-top: 3px; }
 
-  /* ── CARDS ── */
+  /* CARDS */
   .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin-bottom: 18px; }
-  .card-title {
-    font-family: 'Barlow Condensed'; font-size: 17px; font-weight: 700;
-    letter-spacing: 1px; text-transform: uppercase; color: var(--muted);
-    margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
-  }
+  .card-title { font-family: 'Barlow Condensed'; font-size: 17px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
   .card-title em { color: var(--gold); font-style: normal; }
 
-  /* ── PLAYERS ── */
+  /* PLAYERS */
   .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px,1fr)); gap: 14px; }
-  .player-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 20px; text-align: center;
-    transition: all 0.25s; position: relative; overflow: hidden;
-  }
-  .player-card::before {
-    content:''; position:absolute; top:0; left:0; right:0; height:3px;
-    background: var(--gold); transform: scaleX(0); transition: transform 0.3s;
-  }
+  .player-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; text-align: center; transition: all 0.25s; position: relative; overflow: hidden; }
+  .player-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; }
   .player-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
   .player-card:hover::before { transform: scaleX(1); }
-  .player-avatar {
-    width: 62px; height: 62px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--navy-dark), var(--navy));
-    border: 2px solid var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue'; font-size: 20px; color: var(--gold);
-    margin: 0 auto 12px;
-  }
+  .player-avatar { width: 62px; height: 62px; border-radius: 50%; background: linear-gradient(135deg, var(--navy-dark), var(--navy)); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue'; font-size: 20px; color: var(--gold); margin: 0 auto 12px; }
   .player-name { font-weight: 700; font-size: 14px; }
   .player-pos { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin: 4px 0 12px; }
   .player-num { position:absolute; top:12px; right:12px; font-family:'Bebas Neue'; font-size:26px; color: rgba(245,197,24,0.15); }
   .player-stats { display:flex; justify-content:space-around; gap:4px; }
-  .ps { text-align:center; }
-  .ps-val { font-family:'Bebas Neue'; font-size:22px; color:var(--white); }
-  .ps-lbl { font-size:9px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+  .ps { text-align:center; } .ps-val { font-family:'Bebas Neue'; font-size:22px; color:var(--white); } .ps-lbl { font-size:9px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
   .player-actions { display:flex; gap:6px; margin-top:12px; justify-content:center; }
 
-  /* ── MATCH ROWS ── */
+  /* MATCH ROWS */
   .match-list { display:flex; flex-direction:column; gap:10px; }
-  .match-row {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:13px; padding:14px 18px;
-    display:flex; align-items:center; gap:14px; transition:border-color 0.2s;
-  }
+  .match-row { background:var(--card); border:1px solid var(--border); border-radius:13px; padding:14px 18px; display:flex; align-items:center; gap:14px; transition:border-color 0.2s; }
   .match-row:hover { border-color: rgba(245,197,24,0.3); }
   .match-date { font-size:12px; color:var(--muted); min-width:80px; }
   .match-teams { flex:1; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-  .team-name { font-weight:700; font-size:14px; }
-  .vs { color:var(--muted); font-size:11px; }
-  .home-badge { font-size:10px; color:var(--muted); }
+  .team-name { font-weight:700; font-size:14px; } .vs { color:var(--muted); font-size:11px; } .home-badge { font-size:10px; color:var(--muted); }
   .match-score { font-family:'Bebas Neue'; font-size:26px; letter-spacing:3px; min-width:72px; text-align:center; }
-  .score-win { color:var(--green); }
-  .score-loss { color:var(--red); }
-  .score-draw { color:var(--yellow); }
-  .match-result {
-    padding:3px 10px; border-radius:20px; font-size:10px;
-    font-weight:700; letter-spacing:1px; text-transform:uppercase; min-width:56px; text-align:center;
-  }
-  .res-W { background:rgba(34,197,94,0.12); color:var(--green); }
-  .res-L { background:rgba(255,68,68,0.12); color:var(--red); }
-  .res-D { background:rgba(245,197,24,0.12); color:var(--yellow); }
-  .res-U { background:rgba(255,255,255,0.06); color:var(--muted); }
+  .score-win { color:var(--green); } .score-loss { color:var(--red); } .score-draw { color:var(--yellow); }
+  .match-result { padding:3px 10px; border-radius:20px; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; min-width:56px; text-align:center; }
+  .res-W { background:rgba(34,197,94,0.12); color:var(--green); } .res-L { background:rgba(255,68,68,0.12); color:var(--red); } .res-D { background:rgba(245,197,24,0.12); color:var(--yellow); } .res-U { background:rgba(255,255,255,0.06); color:var(--muted); }
   .match-actions { display:flex; gap:5px; }
 
-  /* ── LEADERBOARD ── */
+  /* LEADERBOARD */
   .leaderboard { display:flex; flex-direction:column; gap:8px; }
-  .lb-row {
-    display:flex; align-items:center; gap:12px;
-    padding:11px 14px; background:var(--card2);
-    border-radius:11px; border:1px solid var(--border); transition:all 0.2s;
-  }
+  .lb-row { display:flex; align-items:center; gap:12px; padding:11px 14px; background:var(--card2); border-radius:11px; border:1px solid var(--border); transition:all 0.2s; }
   .lb-row:hover { border-color:rgba(245,197,24,0.3); }
   .lb-rank { font-family:'Bebas Neue'; font-size:22px; color:var(--muted); min-width:28px; }
-  .lb-rank.gold { color:#FFD700; }
-  .lb-rank.silver { color:#C0C0C0; }
-  .lb-rank.bronze { color:#CD7F32; }
-  .lb-avatar {
-    width:36px; height:36px; border-radius:50%;
-    background:linear-gradient(135deg, var(--navy-dark), var(--navy));
-    border:1.5px solid var(--gold);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Bebas Neue'; font-size:13px; color:var(--gold); flex-shrink:0;
-  }
-  .lb-info { flex:1; }
-  .lb-name { font-weight:700; font-size:14px; }
-  .lb-pos { font-size:11px; color:var(--muted); }
+  .lb-rank.gold { color:#FFD700; } .lb-rank.silver { color:#C0C0C0; } .lb-rank.bronze { color:#CD7F32; }
+  .lb-avatar { width:36px; height:36px; border-radius:50%; background:linear-gradient(135deg, var(--navy-dark), var(--navy)); border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue'; font-size:13px; color:var(--gold); flex-shrink:0; }
+  .lb-info { flex:1; } .lb-name { font-weight:700; font-size:14px; } .lb-pos { font-size:11px; color:var(--muted); }
   .lb-bar-wrap { flex:1; height:4px; background:var(--border2); border-radius:4px; }
   .lb-bar { height:100%; background:var(--gold); border-radius:4px; transition:width 1s ease; }
   .lb-val { font-family:'Bebas Neue'; font-size:28px; color:var(--gold); }
 
-  /* ── ATTENDANCE ── */
+  /* ATTENDANCE */
   .att-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:14px; }
   .att-card { background:var(--card); border:1px solid var(--border); border-radius:13px; padding:17px; }
-  .att-pct { font-family:'Bebas Neue'; font-size:34px; color:var(--gold); }
-  .att-match { font-weight:700; font-size:14px; }
-  .att-date { font-size:11px; color:var(--muted); margin-bottom:10px; }
+  .att-pct { font-family:'Bebas Neue'; font-size:34px; color:var(--gold); } .att-match { font-weight:700; font-size:14px; } .att-date { font-size:11px; color:var(--muted); margin-bottom:10px; }
   .att-players { display:flex; flex-wrap:wrap; gap:5px; }
   .att-chip { background:rgba(245,197,24,0.08); color:var(--gold); border:1px solid rgba(245,197,24,0.25); border-radius:20px; padding:2px 9px; font-size:11px; }
 
-  /* ── UPCOMING ── */
+  /* UPCOMING */
   .upcoming-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }
-  .upcoming-card {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:16px; padding:22px; position:relative; overflow:hidden;
-    transition:all 0.2s;
-  }
+  .upcoming-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px; position:relative; overflow:hidden; transition:all 0.2s; }
   .upcoming-card:hover { border-color:var(--gold); transform:translateY(-2px); }
   .upcoming-card::after { content:'⚽'; position:absolute; right:-10px; bottom:-10px; font-size:72px; opacity:0.05; }
   .match-venue { font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--gold); margin-bottom:8px; }
-  .upcoming-opp { font-family:'Bebas Neue'; font-size:30px; line-height:1.1; }
-  .upcoming-date { color:var(--muted); font-size:12px; margin-top:8px; }
+  .upcoming-opp { font-family:'Bebas Neue'; font-size:30px; line-height:1.1; } .upcoming-date { color:var(--muted); font-size:12px; margin-top:8px; }
   .countdown { margin-top:12px; padding-top:12px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); }
   .days-left { font-family:'Bebas Neue'; font-size:20px; color:var(--white); }
 
-  /* ── TABS ── */
+  /* SPONSORS */
+  .sponsors-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+  .sponsor-card { background:var(--card); border:1px solid var(--border); border-radius:18px; padding:24px; text-align:center; transition:all 0.25s; }
+  .sponsor-card:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:0 8px 28px rgba(0,0,0,0.4); }
+  .sponsor-tier { font-size:9px; text-transform:uppercase; letter-spacing:2px; font-weight:700; margin-bottom:14px; padding:3px 10px; border-radius:20px; display:inline-block; }
+  .tier-gold { background:rgba(255,215,0,0.12); color:#FFD700; border:1px solid rgba(255,215,0,0.3); }
+  .tier-silver { background:rgba(192,192,192,0.12); color:#C0C0C0; border:1px solid rgba(192,192,192,0.3); }
+  .tier-bronze { background:rgba(205,127,50,0.12); color:#CD7F32; border:1px solid rgba(205,127,50,0.3); }
+  .tier-partner { background:rgba(245,197,24,0.08); color:var(--gold); border:1px solid var(--border); }
+  .sponsor-logo-box { width:90px; height:90px; border-radius:16px; background:var(--card2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; overflow:hidden; font-family:'Bebas Neue'; font-size:28px; color:var(--gold); }
+  .sponsor-logo-box img { width:100%; height:100%; object-fit:contain; padding:8px; }
+  .sponsor-name { font-family:'Bebas Neue'; font-size:22px; letter-spacing:1px; margin-bottom:5px; }
+  .sponsor-desc { font-size:12px; color:var(--muted); line-height:1.5; margin-bottom:12px; }
+  .sponsor-website { font-size:12px; color:var(--gold); text-decoration:none; }
+  .sponsor-website:hover { text-decoration:underline; }
+  .sponsor-actions { display:flex; gap:6px; margin-top:14px; justify-content:center; }
+  .sponsors-banner { background:linear-gradient(90deg, var(--navy-dark), var(--navy), var(--navy-dark)); border:1px solid var(--border); border-radius:16px; padding:18px 28px; margin-bottom:28px; display:flex; align-items:center; gap:16px; }
+  .sponsors-banner-text { font-family:'Bebas Neue'; font-size:20px; color:var(--gold); letter-spacing:2px; }
+  .sponsors-banner-sub { font-size:12px; color:var(--muted); margin-top:2px; }
+
+  /* NEWS */
+  .news-grid { display:flex; flex-direction:column; gap:16px; }
+  .news-card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:24px; transition:all 0.2s; position:relative; overflow:hidden; }
+  .news-card:hover { border-color:rgba(245,197,24,0.3); }
+  .news-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--gold); }
+  .news-featured { background:rgba(245,197,24,0.04); border-color:rgba(245,197,24,0.25); }
+  .news-category { font-size:9px; text-transform:uppercase; letter-spacing:2px; font-weight:700; color:var(--gold); margin-bottom:8px; }
+  .news-title { font-family:'Bebas Neue'; font-size:26px; letter-spacing:1px; margin-bottom:8px; line-height:1.1; }
+  .news-body { font-size:14px; color:var(--muted); line-height:1.7; }
+  .news-footer { display:flex; align-items:center; justify-content:space-between; margin-top:14px; padding-top:14px; border-top:1px solid var(--border2); }
+  .news-date { font-size:11px; color:var(--muted); }
+  .news-actions { display:flex; gap:6px; }
+  .featured-badge { display:inline-block; background:rgba(245,197,24,0.15); color:var(--gold); border:1px solid rgba(245,197,24,0.3); border-radius:20px; font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:2px 9px; margin-left:10px; vertical-align:middle; }
+
+  /* TABS */
   .tabs { display:flex; gap:3px; margin-bottom:18px; background:var(--card); padding:4px; border-radius:11px; width:fit-content; }
   .tab { padding:7px 18px; border-radius:8px; border:none; background:transparent; color:var(--muted); cursor:pointer; font-family:'Barlow'; font-weight:600; font-size:13px; transition:all 0.2s; }
   .tab.active { background:var(--gold); color:#000; }
 
-  /* ── BUTTONS ── */
+  /* BUTTONS */
   .btn { padding:9px 18px; border-radius:9px; border:none; cursor:pointer; font-family:'Barlow'; font-weight:700; font-size:13px; transition:all 0.2s; }
-  .btn-primary { background:var(--gold); color:#000; }
-  .btn-primary:hover { background:#ffd428; transform:translateY(-1px); }
-  .btn-ghost { background:transparent; color:var(--muted); border:1px solid var(--border2); }
-  .btn-ghost:hover { color:var(--white); border-color:rgba(255,255,255,0.2); }
-  .btn-danger { background:rgba(255,68,68,0.12); color:var(--red); border:1px solid rgba(255,68,68,0.25); }
-  .btn-danger:hover { background:rgba(255,68,68,0.25); }
+  .btn-primary { background:var(--gold); color:#000; } .btn-primary:hover { background:#ffd428; transform:translateY(-1px); }
+  .btn-ghost { background:transparent; color:var(--muted); border:1px solid var(--border2); } .btn-ghost:hover { color:var(--white); border-color:rgba(255,255,255,0.2); }
+  .btn-danger { background:rgba(255,68,68,0.12); color:var(--red); border:1px solid rgba(255,68,68,0.25); } .btn-danger:hover { background:rgba(255,68,68,0.25); }
   .btn-sm { padding:5px 11px; font-size:11px; }
 
-  /* ── FORMS ── */
+  /* FORMS */
   .form-row { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
   .form-group { display:flex; flex-direction:column; gap:5px; flex:1; min-width:150px; }
   .form-group label { font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
-  .form-group input, .form-group select {
-    background:var(--card2); border:1px solid var(--border);
-    color:var(--white); padding:9px 13px; border-radius:9px;
-    font-family:'Barlow'; font-size:14px; outline:none; transition:border-color 0.2s;
-  }
-  .form-group input:focus, .form-group select:focus { border-color:var(--gold); }
+  .form-group input, .form-group select, .form-group textarea { background:var(--card2); border:1px solid var(--border); color:var(--white); padding:9px 13px; border-radius:9px; font-family:'Barlow'; font-size:14px; outline:none; transition:border-color 0.2s; }
+  .form-group textarea { resize:vertical; min-height:90px; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--gold); }
   .form-group select option { background:var(--card2); }
 
-  /* ── MODAL ── */
-  .modal-overlay {
-    position:fixed; inset:0; background:rgba(0,0,0,0.85);
-    display:flex; align-items:center; justify-content:center;
-    z-index:200; opacity:0; pointer-events:none; transition:opacity 0.3s;
-  }
+  /* MODAL */
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:200; opacity:0; pointer-events:none; transition:opacity 0.3s; }
   .modal-overlay.open { opacity:1; pointer-events:all; }
-  .modal {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:20px; padding:30px; max-width:460px; width:90%;
-    transform:scale(0.9); transition:transform 0.3s;
-    max-height:90vh; overflow-y:auto;
-  }
+  .modal { background:var(--card); border:1px solid var(--border); border-radius:20px; padding:30px; max-width:480px; width:90%; transform:scale(0.9); transition:transform 0.3s; max-height:90vh; overflow-y:auto; }
   .modal-overlay.open .modal { transform:scale(1); }
   .modal-title { font-family:'Bebas Neue'; font-size:30px; margin-bottom:18px; color:var(--gold); }
   .modal-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:18px; }
 
-  /* ── LOGIN MODAL ── */
-  .login-modal {
-    background:var(--card); border:1px solid var(--border);
-    border-radius:22px; padding:36px; max-width:380px; width:90%;
-    transform:scale(0.9); transition:transform 0.3s; text-align:center;
-  }
+  /* LOGIN MODAL */
+  .login-modal { background:var(--card); border:1px solid var(--border); border-radius:22px; padding:36px; max-width:380px; width:90%; transform:scale(0.9); transition:transform 0.3s; text-align:center; }
   .modal-overlay.open .login-modal { transform:scale(1); }
   .login-logo { width:80px; height:80px; object-fit:contain; margin:0 auto 16px; display:block; background:#0a1828; border-radius:50%; padding:4px; border:2px solid var(--gold); }
   .login-title { font-family:'Bebas Neue'; font-size:28px; color:var(--gold); margin-bottom:4px; }
   .login-sub { color:var(--muted); font-size:13px; margin-bottom:22px; }
   .login-error { color:var(--red); font-size:13px; margin-top:8px; min-height:18px; }
 
-  /* ── TOASTS ── */
+  /* TOASTS */
   .toast-wrap { position:fixed; bottom:22px; right:22px; z-index:999; display:flex; flex-direction:column; gap:7px; }
-  .toast {
-    background:var(--card2); border:1px solid var(--border);
-    padding:11px 16px; border-radius:11px; font-size:13px;
-    animation:slideIn 0.3s ease; display:flex; align-items:center; gap:7px;
-  }
-  .toast.success { border-color:var(--green); }
-  .toast.error { border-color:var(--red); }
+  .toast { background:var(--card2); border:1px solid var(--border); padding:11px 16px; border-radius:11px; font-size:13px; animation:slideIn 0.3s ease; display:flex; align-items:center; gap:7px; }
+  .toast.success { border-color:var(--green); } .toast.error { border-color:var(--red); }
   @keyframes slideIn { from{transform:translateX(100%);opacity:0;} to{transform:translateX(0);opacity:1;} }
 
   .two-col { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
@@ -317,30 +205,26 @@
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <nav class="sidebar">
-  <div class="sidebar-logo">
-    <img src="/static/logo.png" alt="Strikers FC"/>
-  </div>
+  <div class="sidebar-logo"><img src="/static/logo.png" alt="Strikers FC"/></div>
   <button class="nav-btn active" onclick="showSection('dashboard')" id="nav-dashboard">🏠<span class="tip">Dashboard</span></button>
   <button class="nav-btn" onclick="showSection('roster')" id="nav-roster">👥<span class="tip">Squad</span></button>
   <button class="nav-btn" onclick="showSection('matches')" id="nav-matches">🏟<span class="tip">Matches</span></button>
   <button class="nav-btn" onclick="showSection('leaderboard')" id="nav-leaderboard">🏆<span class="tip">Leaderboard</span></button>
   <button class="nav-btn" onclick="showSection('attendance')" id="nav-attendance">📋<span class="tip">Attendance</span></button>
   <button class="nav-btn" onclick="showSection('upcoming')" id="nav-upcoming">📅<span class="tip">Upcoming</span></button>
+  <button class="nav-btn" onclick="showSection('news')" id="nav-news">📰<span class="tip">News</span></button>
+  <button class="nav-btn" onclick="showSection('sponsors')" id="nav-sponsors">🤝<span class="tip">Sponsors</span></button>
   <div class="sidebar-bottom">
     <div class="admin-dot" id="admin-dot" style="display:none"></div>
-    <button class="nav-btn" id="login-btn" onclick="openLoginModal()" title="Admin Login">🔐<span class="tip">Admin Login</span></button>
-    <button class="nav-btn" id="logout-btn" onclick="doLogout()" style="display:none" title="Logout">🚪<span class="tip">Logout</span></button>
+    <button class="nav-btn" id="login-btn" onclick="openLoginModal()">🔐<span class="tip">Admin Login</span></button>
+    <button class="nav-btn" id="logout-btn" onclick="doLogout()" style="display:none">🚪<span class="tip">Logout</span></button>
   </div>
 </nav>
 
-<!-- MAIN -->
 <main class="main">
-
-  <!-- view-only bar (shown to non-admins) -->
   <div class="view-only-bar" id="view-only-bar" style="display:none">
-    👁 <span>View-only mode</span> — Only the manager can make changes. &nbsp;
+    👁 <span>View-only mode</span> — Only the manager can make changes.
     <button class="btn btn-ghost" style="padding:5px 14px;font-size:12px;" onclick="openLoginModal()">🔐 Admin Login</button>
   </div>
 
@@ -352,28 +236,19 @@
         <div class="hero-name">STRIKERS<br>FC</div>
         <div class="hero-tag">Together We Strike. Together We Win.</div>
       </div>
-      <img class="hero-logo" src="/static/logo.png" alt="Strikers FC Logo"/>
+      <img class="hero-logo" src="/static/logo.png" alt="Logo"/>
     </div>
     <div class="stats-grid" id="stats-grid"></div>
     <div class="two-col">
-      <div class="card">
-        <div class="card-title">⚡ <em>Top Scorers</em></div>
-        <div id="dash-scorers" class="leaderboard"></div>
-      </div>
-      <div class="card">
-        <div class="card-title">🗓 <em>Recent Results</em></div>
-        <div id="dash-results" class="match-list"></div>
-      </div>
+      <div class="card"><div class="card-title">⚡ <em>Top Scorers</em></div><div id="dash-scorers" class="leaderboard"></div></div>
+      <div class="card"><div class="card-title">🗓 <em>Recent Results</em></div><div id="dash-results" class="match-list"></div></div>
     </div>
   </div>
 
   <!-- ROSTER -->
   <div class="section" id="section-roster">
     <div class="page-header">
-      <div>
-        <div class="page-title">SQUAD</div>
-        <div class="page-subtitle">Full player roster for Strikers FC</div>
-      </div>
+      <div><div class="page-title">SQUAD</div><div class="page-subtitle">Full player roster</div></div>
       <button class="btn btn-primary admin-only" style="display:none" onclick="openModal('add-player')">+ Add Player</button>
     </div>
     <div class="players-grid" id="players-grid"></div>
@@ -382,10 +257,7 @@
   <!-- MATCHES -->
   <div class="section" id="section-matches">
     <div class="page-header">
-      <div>
-        <div class="page-title">MATCHES</div>
-        <div class="page-subtitle">Results and fixtures</div>
-      </div>
+      <div><div class="page-title">MATCHES</div><div class="page-subtitle">Results and fixtures</div></div>
       <button class="btn btn-primary admin-only" style="display:none" onclick="openModal('add-match')">+ Add Match</button>
     </div>
     <div class="tabs">
@@ -398,9 +270,7 @@
 
   <!-- LEADERBOARD -->
   <div class="section" id="section-leaderboard">
-    <div class="page-header">
-      <div><div class="page-title">LEADERBOARD</div><div class="page-subtitle">Player rankings</div></div>
-    </div>
+    <div class="page-header"><div><div class="page-title">LEADERBOARD</div><div class="page-subtitle">Player rankings</div></div></div>
     <div class="tabs">
       <button class="tab active" onclick="showLB('goals',this)">⚽ Goals</button>
       <button class="tab" onclick="showLB('assists',this)">🅰️ Assists</button>
@@ -420,18 +290,37 @@
 
   <!-- UPCOMING -->
   <div class="section" id="section-upcoming">
-    <div class="page-header">
-      <div><div class="page-title">UPCOMING</div><div class="page-subtitle">Next fixtures</div></div>
-    </div>
+    <div class="page-header"><div><div class="page-title">UPCOMING</div><div class="page-subtitle">Next fixtures</div></div></div>
     <div class="upcoming-grid" id="upcoming-grid"></div>
   </div>
 
+  <!-- NEWS -->
+  <div class="section" id="section-news">
+    <div class="page-header">
+      <div><div class="page-title">NEWS & ANNOUNCEMENTS</div><div class="page-subtitle">Latest updates from Strikers FC</div></div>
+      <button class="btn btn-primary admin-only" style="display:none" onclick="openModal('add-news')">+ Post News</button>
+    </div>
+    <div class="news-grid" id="news-grid"></div>
+  </div>
+
+  <!-- SPONSORS -->
+  <div class="section" id="section-sponsors">
+    <div class="page-header">
+      <div><div class="page-title">OUR SPONSORS</div><div class="page-subtitle">Official partners of Strikers FC</div></div>
+      <button class="btn btn-primary admin-only" style="display:none" onclick="openModal('add-sponsor')">+ Add Sponsor</button>
+    </div>
+    <div class="sponsors-banner">
+      <span style="font-size:28px;">🤝</span>
+      <div>
+        <div class="sponsors-banner-text">PROUD PARTNERS OF STRIKERS FC</div>
+        <div class="sponsors-banner-sub">Together we build a winning team — on and off the pitch</div>
+      </div>
+    </div>
+    <div class="sponsors-grid" id="sponsors-grid"></div>
+  </div>
 </main>
 
-<!-- TOASTS -->
 <div class="toast-wrap" id="toasts"></div>
-
-<!-- ═══════════════════ MODALS ═══════════════════ -->
 
 <!-- LOGIN -->
 <div class="modal-overlay" id="modal-login">
@@ -439,15 +328,8 @@
     <img class="login-logo" src="/static/logo.png" alt="Logo"/>
     <div class="login-title">Admin Login</div>
     <div class="login-sub">Strikers FC — Manager Access Only</div>
-    <div class="form-group" style="text-align:left;margin-bottom:10px">
-      <label>Username</label>
-      <input type="text" id="login-user" placeholder="Enter username" autocomplete="username"/>
-    </div>
-    <div class="form-group" style="text-align:left;margin-bottom:4px">
-      <label>Password</label>
-      <input type="password" id="login-pass" placeholder="Enter password" autocomplete="current-password"
-        onkeydown="if(event.key==='Enter')doLogin()"/>
-    </div>
+    <div class="form-group" style="text-align:left;margin-bottom:10px"><label>Username</label><input type="text" id="login-user" placeholder="Enter username"/></div>
+    <div class="form-group" style="text-align:left;margin-bottom:4px"><label>Password</label><input type="password" id="login-pass" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/></div>
     <div class="login-error" id="login-error"></div>
     <div style="display:flex;gap:8px;margin-top:16px;justify-content:flex-end;">
       <button class="btn btn-ghost" onclick="closeModal('login')">Cancel</button>
@@ -457,526 +339,287 @@
 </div>
 
 <!-- ADD PLAYER -->
-<div class="modal-overlay" id="modal-add-player">
-  <div class="modal">
-    <div class="modal-title">Add Player</div>
-    <div class="form-row">
-      <div class="form-group"><label>Full Name</label><input type="text" id="p-name" placeholder="e.g. Marcus Johnson"/></div>
-      <div class="form-group" style="max-width:85px"><label>Number</label><input type="number" id="p-number" placeholder="9"/></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Position</label>
-        <select id="p-pos"><option>Striker</option><option>Midfielder</option><option>Defender</option><option>Goalkeeper</option><option>Winger</option></select>
-      </div>
-      <div class="form-group"><label>Goals</label><input type="number" id="p-goals" value="0"/></div>
-      <div class="form-group"><label>Assists</label><input type="number" id="p-assists" value="0"/></div>
-      <div class="form-group"><label>Appearances</label><input type="number" id="p-matches" value="0"/></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('add-player')">Cancel</button>
-      <button class="btn btn-primary" onclick="addPlayer()">Add Player</button>
-    </div>
+<div class="modal-overlay" id="modal-add-player"><div class="modal">
+  <div class="modal-title">Add Player</div>
+  <div class="form-row">
+    <div class="form-group"><label>Full Name</label><input type="text" id="p-name" placeholder="e.g. Marcus Johnson"/></div>
+    <div class="form-group" style="max-width:85px"><label>Number</label><input type="number" id="p-number" placeholder="9"/></div>
   </div>
-</div>
+  <div class="form-row">
+    <div class="form-group"><label>Position</label><select id="p-pos"><option>Striker</option><option>Midfielder</option><option>Defender</option><option>Goalkeeper</option><option>Winger</option></select></div>
+    <div class="form-group"><label>Goals</label><input type="number" id="p-goals" value="0"/></div>
+    <div class="form-group"><label>Assists</label><input type="number" id="p-assists" value="0"/></div>
+    <div class="form-group"><label>Appearances</label><input type="number" id="p-matches" value="0"/></div>
+  </div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('add-player')">Cancel</button><button class="btn btn-primary" onclick="addPlayer()">Add Player</button></div>
+</div></div>
 
 <!-- EDIT PLAYER -->
-<div class="modal-overlay" id="modal-edit-player">
-  <div class="modal">
-    <div class="modal-title">Edit Player</div>
-    <input type="hidden" id="ep-id"/>
-    <div class="form-row">
-      <div class="form-group"><label>Full Name</label><input type="text" id="ep-name"/></div>
-      <div class="form-group" style="max-width:85px"><label>Number</label><input type="number" id="ep-number"/></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Position</label>
-        <select id="ep-pos"><option>Striker</option><option>Midfielder</option><option>Defender</option><option>Goalkeeper</option><option>Winger</option></select>
-      </div>
-      <div class="form-group"><label>Goals</label><input type="number" id="ep-goals"/></div>
-      <div class="form-group"><label>Assists</label><input type="number" id="ep-assists"/></div>
-      <div class="form-group"><label>Appearances</label><input type="number" id="ep-matches"/></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('edit-player')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveEditPlayer()">Save Changes</button>
-    </div>
+<div class="modal-overlay" id="modal-edit-player"><div class="modal">
+  <div class="modal-title">Edit Player</div><input type="hidden" id="ep-id"/>
+  <div class="form-row">
+    <div class="form-group"><label>Full Name</label><input type="text" id="ep-name"/></div>
+    <div class="form-group" style="max-width:85px"><label>Number</label><input type="number" id="ep-number"/></div>
   </div>
-</div>
+  <div class="form-row">
+    <div class="form-group"><label>Position</label><select id="ep-pos"><option>Striker</option><option>Midfielder</option><option>Defender</option><option>Goalkeeper</option><option>Winger</option></select></div>
+    <div class="form-group"><label>Goals</label><input type="number" id="ep-goals"/></div>
+    <div class="form-group"><label>Assists</label><input type="number" id="ep-assists"/></div>
+    <div class="form-group"><label>Appearances</label><input type="number" id="ep-matches"/></div>
+  </div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('edit-player')">Cancel</button><button class="btn btn-primary" onclick="saveEditPlayer()">Save Changes</button></div>
+</div></div>
 
 <!-- ADD MATCH -->
-<div class="modal-overlay" id="modal-add-match">
-  <div class="modal">
-    <div class="modal-title">Add Match</div>
-    <div class="form-row">
-      <div class="form-group"><label>Opponent</label><input type="text" id="m-opp" placeholder="e.g. City Wolves"/></div>
-      <div class="form-group" style="max-width:155px"><label>Date</label><input type="date" id="m-date"/></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Venue</label>
-        <select id="m-home"><option value="true">Home</option><option value="false">Away</option></select>
-      </div>
-      <div class="form-group"><label>Status</label>
-        <select id="m-status" onchange="toggleScore(this.value,'score-fields')">
-          <option value="upcoming">Upcoming</option><option value="completed">Completed</option>
-        </select>
-      </div>
-    </div>
-    <div id="score-fields" class="form-row" style="display:none">
-      <div class="form-group"><label>Our Score</label><input type="number" id="m-us" value="0"/></div>
-      <div class="form-group"><label>Their Score</label><input type="number" id="m-them" value="0"/></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('add-match')">Cancel</button>
-      <button class="btn btn-primary" onclick="addMatch()">Save Match</button>
-    </div>
+<div class="modal-overlay" id="modal-add-match"><div class="modal">
+  <div class="modal-title">Add Match</div>
+  <div class="form-row">
+    <div class="form-group"><label>Opponent</label><input type="text" id="m-opp" placeholder="e.g. City Wolves"/></div>
+    <div class="form-group" style="max-width:155px"><label>Date</label><input type="date" id="m-date"/></div>
   </div>
-</div>
+  <div class="form-row">
+    <div class="form-group"><label>Venue</label><select id="m-home"><option value="true">Home</option><option value="false">Away</option></select></div>
+    <div class="form-group"><label>Status</label><select id="m-status" onchange="toggleScore(this.value,'score-fields')"><option value="upcoming">Upcoming</option><option value="completed">Completed</option></select></div>
+  </div>
+  <div id="score-fields" class="form-row" style="display:none">
+    <div class="form-group"><label>Our Score</label><input type="number" id="m-us" value="0"/></div>
+    <div class="form-group"><label>Their Score</label><input type="number" id="m-them" value="0"/></div>
+  </div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('add-match')">Cancel</button><button class="btn btn-primary" onclick="addMatch()">Save Match</button></div>
+</div></div>
 
 <!-- EDIT MATCH -->
-<div class="modal-overlay" id="modal-edit-match">
-  <div class="modal">
-    <div class="modal-title">Edit Match</div>
-    <input type="hidden" id="em-id"/>
-    <div class="form-row">
-      <div class="form-group"><label>Opponent</label><input type="text" id="em-opp"/></div>
-      <div class="form-group" style="max-width:155px"><label>Date</label><input type="date" id="em-date"/></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Venue</label>
-        <select id="em-home"><option value="true">Home</option><option value="false">Away</option></select>
-      </div>
-      <div class="form-group"><label>Status</label>
-        <select id="em-status" onchange="toggleScore(this.value,'em-score-fields')">
-          <option value="upcoming">Upcoming</option><option value="completed">Completed</option>
-        </select>
-      </div>
-    </div>
-    <div id="em-score-fields" class="form-row">
-      <div class="form-group"><label>Our Score</label><input type="number" id="em-us" value="0"/></div>
-      <div class="form-group"><label>Their Score</label><input type="number" id="em-them" value="0"/></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('edit-match')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveEditMatch()">Save Changes</button>
-    </div>
+<div class="modal-overlay" id="modal-edit-match"><div class="modal">
+  <div class="modal-title">Edit Match</div><input type="hidden" id="em-id"/>
+  <div class="form-row">
+    <div class="form-group"><label>Opponent</label><input type="text" id="em-opp"/></div>
+    <div class="form-group" style="max-width:155px"><label>Date</label><input type="date" id="em-date"/></div>
   </div>
-</div>
+  <div class="form-row">
+    <div class="form-group"><label>Venue</label><select id="em-home"><option value="true">Home</option><option value="false">Away</option></select></div>
+    <div class="form-group"><label>Status</label><select id="em-status" onchange="toggleScore(this.value,'em-score-fields')"><option value="upcoming">Upcoming</option><option value="completed">Completed</option></select></div>
+  </div>
+  <div id="em-score-fields" class="form-row">
+    <div class="form-group"><label>Our Score</label><input type="number" id="em-us" value="0"/></div>
+    <div class="form-group"><label>Their Score</label><input type="number" id="em-them" value="0"/></div>
+  </div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('edit-match')">Cancel</button><button class="btn btn-primary" onclick="saveEditMatch()">Save Changes</button></div>
+</div></div>
 
 <!-- MARK ATTENDANCE -->
-<div class="modal-overlay" id="modal-mark-attendance">
-  <div class="modal">
-    <div class="modal-title">Mark Attendance</div>
-    <div class="form-row">
-      <div class="form-group"><label>Match / Event</label><select id="att-match-sel"></select></div>
-    </div>
-    <div id="att-player-list" style="display:flex;flex-wrap:wrap;gap:7px;max-height:200px;overflow-y:auto;margin-bottom:14px;"></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('mark-attendance')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveAttendance()">Save</button>
+<div class="modal-overlay" id="modal-mark-attendance"><div class="modal">
+  <div class="modal-title">Mark Attendance</div>
+  <div class="form-row"><div class="form-group"><label>Match / Event</label><select id="att-match-sel"></select></div></div>
+  <div id="att-player-list" style="display:flex;flex-wrap:wrap;gap:7px;max-height:200px;overflow-y:auto;margin-bottom:14px;"></div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('mark-attendance')">Cancel</button><button class="btn btn-primary" onclick="saveAttendance()">Save</button></div>
+</div></div>
+
+<!-- ADD SPONSOR -->
+<div class="modal-overlay" id="modal-add-sponsor"><div class="modal">
+  <div class="modal-title">Add Sponsor</div>
+  <div class="form-row">
+    <div class="form-group"><label>Sponsor Name *</label><input type="text" id="sp-name" placeholder="e.g. Acme Sports"/></div>
+    <div class="form-group" style="max-width:140px"><label>Tier</label>
+      <select id="sp-tier"><option value="gold">🥇 Gold</option><option value="silver">🥈 Silver</option><option value="bronze">🥉 Bronze</option><option value="partner">🤝 Partner</option></select>
     </div>
   </div>
-</div>
+  <div class="form-row"><div class="form-group"><label>Description</label><textarea id="sp-desc" placeholder="Brief description of the sponsor..."></textarea></div></div>
+  <div class="form-row"><div class="form-group"><label>Website URL</label><input type="text" id="sp-website" placeholder="https://example.com"/></div></div>
+  <div class="form-row"><div class="form-group"><label>Logo URL (optional)</label><input type="text" id="sp-logo" placeholder="https://example.com/logo.png"/></div></div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('add-sponsor')">Cancel</button><button class="btn btn-primary" onclick="addSponsor()">Add Sponsor</button></div>
+</div></div>
+
+<!-- EDIT SPONSOR -->
+<div class="modal-overlay" id="modal-edit-sponsor"><div class="modal">
+  <div class="modal-title">Edit Sponsor</div><input type="hidden" id="esp-id"/>
+  <div class="form-row">
+    <div class="form-group"><label>Sponsor Name *</label><input type="text" id="esp-name"/></div>
+    <div class="form-group" style="max-width:140px"><label>Tier</label>
+      <select id="esp-tier"><option value="gold">🥇 Gold</option><option value="silver">🥈 Silver</option><option value="bronze">🥉 Bronze</option><option value="partner">🤝 Partner</option></select>
+    </div>
+  </div>
+  <div class="form-row"><div class="form-group"><label>Description</label><textarea id="esp-desc"></textarea></div></div>
+  <div class="form-row"><div class="form-group"><label>Website URL</label><input type="text" id="esp-website"/></div></div>
+  <div class="form-row"><div class="form-group"><label>Logo URL</label><input type="text" id="esp-logo"/></div></div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('edit-sponsor')">Cancel</button><button class="btn btn-primary" onclick="saveEditSponsor()">Save Changes</button></div>
+</div></div>
+
+<!-- ADD NEWS -->
+<div class="modal-overlay" id="modal-add-news"><div class="modal">
+  <div class="modal-title">Post News / Announcement</div>
+  <div class="form-row"><div class="form-group"><label>Title *</label><input type="text" id="n-title" placeholder="e.g. Season Kickoff Announced!"/></div></div>
+  <div class="form-row">
+    <div class="form-group" style="max-width:160px"><label>Category</label>
+      <select id="n-category"><option value="Announcement">📢 Announcement</option><option value="Match Report">⚽ Match Report</option><option value="Transfer">🔄 Transfer</option><option value="Training">🏃 Training</option><option value="Event">🎉 Event</option><option value="General">📌 General</option></select>
+    </div>
+    <div class="form-group" style="max-width:155px"><label>Date</label><input type="date" id="n-date"/></div>
+    <div class="form-group" style="max-width:110px"><label>Featured</label><select id="n-featured"><option value="false">No</option><option value="true">⭐ Yes</option></select></div>
+  </div>
+  <div class="form-row"><div class="form-group"><label>Content *</label><textarea id="n-body" placeholder="Write your announcement here..." style="min-height:120px;"></textarea></div></div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('add-news')">Cancel</button><button class="btn btn-primary" onclick="addNews()">Publish</button></div>
+</div></div>
+
+<!-- EDIT NEWS -->
+<div class="modal-overlay" id="modal-edit-news"><div class="modal">
+  <div class="modal-title">Edit News</div><input type="hidden" id="en-id"/>
+  <div class="form-row"><div class="form-group"><label>Title *</label><input type="text" id="en-title"/></div></div>
+  <div class="form-row">
+    <div class="form-group" style="max-width:160px"><label>Category</label>
+      <select id="en-category"><option value="Announcement">📢 Announcement</option><option value="Match Report">⚽ Match Report</option><option value="Transfer">🔄 Transfer</option><option value="Training">🏃 Training</option><option value="Event">🎉 Event</option><option value="General">📌 General</option></select>
+    </div>
+    <div class="form-group" style="max-width:155px"><label>Date</label><input type="date" id="en-date"/></div>
+    <div class="form-group" style="max-width:110px"><label>Featured</label><select id="en-featured"><option value="false">No</option><option value="true">⭐ Yes</option></select></div>
+  </div>
+  <div class="form-row"><div class="form-group"><label>Content *</label><textarea id="en-body" style="min-height:120px;"></textarea></div></div>
+  <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal('edit-news')">Cancel</button><button class="btn btn-primary" onclick="saveEditNews()">Save Changes</button></div>
+</div></div>
 
 <script>
-let state = { players:[], matches:[], attendance:{}, stats:{} };
-let isAdmin = false;
-let lbField = 'goals';
-let matchFilter = 'all';
+let state={players:[],matches:[],attendance:{},stats:{},sponsors:[],news:[]};
+let isAdmin=false,lbField='goals',matchFilter='all';
 
-// ── Bootstrap ──────────────────────────────────────────────────
-async function load() {
-  const [dataRes, statsRes, meRes] = await Promise.all([
-    fetch('/api/data'), fetch('/api/stats'), fetch('/api/me')
-  ]);
-  const d = await dataRes.json();
-  state.players = d.players;
-  state.matches = d.matches;
-  state.attendance = d.attendance;
-  state.stats = await statsRes.json();
-  const me = await meRes.json();
-  setAdmin(me.is_admin);
-  render();
+async function load(){
+  const [dR,sR,mR]=await Promise.all([fetch('/api/data'),fetch('/api/stats'),fetch('/api/me')]);
+  const d=await dR.json();
+  state.players=d.players; state.matches=d.matches; state.attendance=d.attendance;
+  state.sponsors=d.sponsors||[]; state.news=d.news||[];
+  state.stats=await sR.json(); const me=await mR.json(); setAdmin(me.is_admin); render();
 }
 
-function setAdmin(val) {
-  isAdmin = val;
-  document.querySelectorAll('.admin-only').forEach(el => el.style.display = val ? '' : 'none');
-  document.getElementById('admin-dot').style.display = val ? 'block' : 'none';
-  document.getElementById('login-btn').style.display = val ? 'none' : '';
-  document.getElementById('logout-btn').style.display = val ? '' : 'none';
-  document.getElementById('view-only-bar').style.display = val ? 'none' : '';
+function setAdmin(v){
+  isAdmin=v;
+  document.querySelectorAll('.admin-only').forEach(el=>el.style.display=v?'':'none');
+  document.getElementById('admin-dot').style.display=v?'block':'none';
+  document.getElementById('login-btn').style.display=v?'none':'';
+  document.getElementById('logout-btn').style.display=v?'':'none';
+  document.getElementById('view-only-bar').style.display=v?'none':'';
 }
 
-function render() {
-  renderDashboard();
-  renderRoster();
-  renderMatches();
-  renderLB(lbField);
-  renderAttendance();
-  renderUpcoming();
+function render(){renderDashboard();renderRoster();renderMatches();renderLB(lbField);renderAttendance();renderUpcoming();renderSponsors();renderNews();}
+
+function renderDashboard(){
+  const s=state.stats;
+  const defs=[{num:s.played,label:'Played'},{num:s.wins,label:'Wins'},{num:s.draws,label:'Draws'},{num:s.losses,label:'Losses'},{num:s.goals_for,label:'Goals For'},{num:s.goals_against,label:'Goals Against'},{num:s.points,label:'Points'},{num:state.players.length,label:'Players'}];
+  document.getElementById('stats-grid').innerHTML=defs.map(d=>`<div class="stat-card"><div class="stat-num">${d.num}</div><div class="stat-label">${d.label}</div></div>`).join('');
+  const sorted=[...state.players].sort((a,b)=>b.goals-a.goals).slice(0,5);
+  const max=sorted[0]?.goals||1;
+  document.getElementById('dash-scorers').innerHTML=sorted.map((p,i)=>`<div class="lb-row"><div class="lb-rank ${i===0?'gold':i===1?'silver':i===2?'bronze':''}">${i+1}</div><div class="lb-avatar">${p.photo}</div><div class="lb-info"><div class="lb-name">${p.name}</div><div class="lb-pos">${p.position}</div></div><div class="lb-bar-wrap"><div class="lb-bar" style="width:${(p.goals/max)*100}%"></div></div><div class="lb-val">${p.goals}</div></div>`).join('');
+  const completed=state.matches.filter(m=>m.status==='completed').slice(-4).reverse();
+  document.getElementById('dash-results').innerHTML=completed.map(m=>{const[r,c]=scoreInfo(m);return`<div class="match-row"><div class="match-date">${fmtDate(m.date)}</div><div class="match-teams"><span class="team-name">Strikers FC</span><span class="vs">vs</span><span class="team-name">${m.opponent}</span></div><div class="match-score ${c}">${m.score_us} - ${m.score_them}</div><div class="match-result res-${r}">${r}</div></div>`;}).join('');
 }
 
-// ── DASHBOARD ─────────────────────────────────────────────────
-function renderDashboard() {
-  const s = state.stats;
-  const defs = [
-    {num:s.played,label:'Played'},{num:s.wins,label:'Wins'},
-    {num:s.draws,label:'Draws'},{num:s.losses,label:'Losses'},
-    {num:s.goals_for,label:'Goals For'},{num:s.goals_against,label:'Goals Against'},
-    {num:s.points,label:'Points'},{num:state.players.length,label:'Players'},
-  ];
-  document.getElementById('stats-grid').innerHTML = defs.map(d =>
-    `<div class="stat-card"><div class="stat-num">${d.num}</div><div class="stat-label">${d.label}</div></div>`
-  ).join('');
-
-  const sorted = [...state.players].sort((a,b)=>b.goals-a.goals).slice(0,5);
-  const max = sorted[0]?.goals||1;
-  document.getElementById('dash-scorers').innerHTML = sorted.map((p,i)=>`
-    <div class="lb-row">
-      <div class="lb-rank ${i===0?'gold':i===1?'silver':i===2?'bronze':''}">${i+1}</div>
-      <div class="lb-avatar">${p.photo}</div>
-      <div class="lb-info"><div class="lb-name">${p.name}</div><div class="lb-pos">${p.position}</div></div>
-      <div class="lb-bar-wrap"><div class="lb-bar" style="width:${(p.goals/max)*100}%"></div></div>
-      <div class="lb-val">${p.goals}</div>
-    </div>`).join('');
-
-  const completed = state.matches.filter(m=>m.status==='completed').slice(-4).reverse();
-  document.getElementById('dash-results').innerHTML = completed.map(m=>{
-    const [res,cls] = scoreInfo(m);
-    return `<div class="match-row">
-      <div class="match-date">${fmtDate(m.date)}</div>
-      <div class="match-teams"><span class="team-name">Strikers FC</span><span class="vs">vs</span><span class="team-name">${m.opponent}</span></div>
-      <div class="match-score ${cls}">${m.score_us} - ${m.score_them}</div>
-      <div class="match-result res-${res}">${res}</div>
-    </div>`;
-  }).join('');
+function renderRoster(){
+  document.getElementById('players-grid').innerHTML=state.players.map(p=>`<div class="player-card"><div class="player-num">${p.number}</div><div class="player-avatar">${p.photo}</div><div class="player-name">${p.name}</div><div class="player-pos">${p.position}</div><div class="player-stats"><div class="ps"><div class="ps-val">${p.goals}</div><div class="ps-lbl">Goals</div></div><div class="ps"><div class="ps-val">${p.assists}</div><div class="ps-lbl">Assists</div></div><div class="ps"><div class="ps-val">${p.matches}</div><div class="ps-lbl">Played</div></div></div>${isAdmin?`<div class="player-actions"><button class="btn btn-ghost btn-sm" onclick="openEditPlayer(${p.id})">✏️ Edit</button><button class="btn btn-danger btn-sm" onclick="deletePlayer(${p.id})">🗑</button></div>`:''}</div>`).join('');
 }
 
-// ── ROSTER ────────────────────────────────────────────────────
-function renderRoster() {
-  document.getElementById('players-grid').innerHTML = state.players.map(p=>`
-    <div class="player-card">
-      <div class="player-num">${p.number}</div>
-      <div class="player-avatar">${p.photo}</div>
-      <div class="player-name">${p.name}</div>
-      <div class="player-pos">${p.position}</div>
-      <div class="player-stats">
-        <div class="ps"><div class="ps-val">${p.goals}</div><div class="ps-lbl">Goals</div></div>
-        <div class="ps"><div class="ps-val">${p.assists}</div><div class="ps-lbl">Assists</div></div>
-        <div class="ps"><div class="ps-val">${p.matches}</div><div class="ps-lbl">Played</div></div>
-      </div>
-      ${isAdmin ? `<div class="player-actions">
-        <button class="btn btn-ghost btn-sm" onclick="openEditPlayer(${p.id})">✏️ Edit</button>
-        <button class="btn btn-danger btn-sm" onclick="deletePlayer(${p.id})">🗑</button>
-      </div>` : ''}
-    </div>`).join('');
+function renderMatches(){
+  const list=matchFilter==='all'?state.matches:state.matches.filter(m=>m.status===matchFilter);
+  document.getElementById('matches-list').innerHTML=list.map(m=>{
+    const ab=isAdmin?`<div class="match-actions"><button class="btn btn-ghost btn-sm" onclick="openEditMatch(${m.id})">✏️</button><button class="btn btn-danger btn-sm" onclick="deleteMatch(${m.id})">🗑</button></div>`:'';
+    if(m.status==='upcoming')return`<div class="match-row"><div class="match-date">${fmtDate(m.date)}</div><div class="match-teams"><span class="team-name">Strikers FC</span><span class="vs">vs</span><span class="team-name">${m.opponent}</span><span class="home-badge">${m.home?'🏠 Home':'✈️ Away'}</span></div><div class="match-score" style="color:var(--muted);font-size:15px;">TBD</div><div class="match-result res-U">UPCOMING</div>${ab}</div>`;
+    const[r,c]=scoreInfo(m);
+    return`<div class="match-row"><div class="match-date">${fmtDate(m.date)}</div><div class="match-teams"><span class="team-name">Strikers FC</span><span class="vs">vs</span><span class="team-name">${m.opponent}</span><span class="home-badge">${m.home?'🏠 Home':'✈️ Away'}</span></div><div class="match-score ${c}">${m.score_us} - ${m.score_them}</div><div class="match-result res-${r}">${r}</div>${ab}</div>`;
+  }).join('')||'<div style="color:var(--muted);text-align:center;padding:40px">No matches found</div>';
 }
 
-// ── MATCHES ───────────────────────────────────────────────────
-function renderMatches() {
-  const list = matchFilter==='all' ? state.matches : state.matches.filter(m=>m.status===matchFilter);
-  document.getElementById('matches-list').innerHTML = list.map(m=>{
-    const adminBtns = isAdmin ? `<div class="match-actions">
-      <button class="btn btn-ghost btn-sm" onclick="openEditMatch(${m.id})">✏️</button>
-      <button class="btn btn-danger btn-sm" onclick="deleteMatch(${m.id})">🗑</button>
-    </div>` : '';
-
-    if(m.status==='upcoming') return `<div class="match-row">
-      <div class="match-date">${fmtDate(m.date)}</div>
-      <div class="match-teams">
-        <span class="team-name">Strikers FC</span><span class="vs">vs</span>
-        <span class="team-name">${m.opponent}</span>
-        <span class="home-badge">${m.home?'🏠 Home':'✈️ Away'}</span>
-      </div>
-      <div class="match-score" style="color:var(--muted);font-size:15px;">TBD</div>
-      <div class="match-result res-U">UPCOMING</div>
-      ${adminBtns}
-    </div>`;
-
-    const [res,cls] = scoreInfo(m);
-    return `<div class="match-row">
-      <div class="match-date">${fmtDate(m.date)}</div>
-      <div class="match-teams">
-        <span class="team-name">Strikers FC</span><span class="vs">vs</span>
-        <span class="team-name">${m.opponent}</span>
-        <span class="home-badge">${m.home?'🏠 Home':'✈️ Away'}</span>
-      </div>
-      <div class="match-score ${cls}">${m.score_us} - ${m.score_them}</div>
-      <div class="match-result res-${res}">${res}</div>
-      ${adminBtns}
-    </div>`;
-  }).join('') || '<div style="color:var(--muted);text-align:center;padding:40px">No matches found</div>';
+function renderLB(field){
+  lbField=field;
+  const labels={goals:'Goals',assists:'Assists',matches:'Appearances'};
+  const sorted=[...state.players].sort((a,b)=>b[field]-a[field]);
+  const max=sorted[0]?.[field]||1;
+  document.getElementById('lb-list').innerHTML=sorted.map((p,i)=>`<div class="lb-row"><div class="lb-rank ${i===0?'gold':i===1?'silver':i===2?'bronze':''}">${i+1}</div><div class="lb-avatar">${p.photo}</div><div class="lb-info"><div class="lb-name">${p.name}</div><div class="lb-pos">${p.position} · #${p.number}</div></div><div class="lb-bar-wrap"><div class="lb-bar" style="width:${(p[field]/max)*100}%"></div></div><div class="lb-val">${p[field]} <span style="font-size:11px;color:var(--muted)">${labels[field]}</span></div></div>`).join('');
 }
 
-// ── LEADERBOARD ───────────────────────────────────────────────
-function renderLB(field) {
-  lbField = field;
-  const labels = {goals:'Goals',assists:'Assists',matches:'Appearances'};
-  const sorted = [...state.players].sort((a,b)=>b[field]-a[field]);
-  const max = sorted[0]?.[field]||1;
-  document.getElementById('lb-list').innerHTML = sorted.map((p,i)=>`
-    <div class="lb-row">
-      <div class="lb-rank ${i===0?'gold':i===1?'silver':i===2?'bronze':''}">${i+1}</div>
-      <div class="lb-avatar">${p.photo}</div>
-      <div class="lb-info"><div class="lb-name">${p.name}</div><div class="lb-pos">${p.position} · #${p.number}</div></div>
-      <div class="lb-bar-wrap"><div class="lb-bar" style="width:${(p[field]/max)*100}%"></div></div>
-      <div class="lb-val">${p[field]} <span style="font-size:11px;color:var(--muted)">${labels[field]}</span></div>
-    </div>`).join('');
-}
-
-// ── ATTENDANCE ────────────────────────────────────────────────
-function renderAttendance() {
-  const entries = Object.entries(state.attendance);
+function renderAttendance(){
+  const entries=Object.entries(state.attendance);
   if(!entries.length){document.getElementById('att-grid').innerHTML='<div style="color:var(--muted)">No records yet.</div>';return;}
-  document.getElementById('att-grid').innerHTML = entries.map(([date,players])=>{
-    const match = state.matches.find(m=>m.date===date);
-    const pct = state.players.length ? Math.round((players.length/state.players.length)*100) : 0;
-    return `<div class="att-card">
-      <div class="att-pct">${pct}%</div>
-      <div class="att-match">${match?`vs ${match.opponent}`:'Training'}</div>
-      <div class="att-date">${fmtDate(date)} · ${players.length}/${state.players.length} players</div>
-      <div class="att-players">${players.map(p=>`<span class="att-chip">${p.split(' ')[0]}</span>`).join('')}</div>
-    </div>`;
+  document.getElementById('att-grid').innerHTML=entries.map(([date,players])=>{
+    const match=state.matches.find(m=>m.date===date);
+    const pct=state.players.length?Math.round((players.length/state.players.length)*100):0;
+    return`<div class="att-card"><div class="att-pct">${pct}%</div><div class="att-match">${match?`vs ${match.opponent}`:'Training'}</div><div class="att-date">${fmtDate(date)} · ${players.length}/${state.players.length} players</div><div class="att-players">${players.map(p=>`<span class="att-chip">${p.split(' ')[0]}</span>`).join('')}</div></div>`;
   }).join('');
 }
 
-// ── UPCOMING ──────────────────────────────────────────────────
-function renderUpcoming() {
-  const upcoming = state.matches.filter(m=>m.status==='upcoming');
-  document.getElementById('upcoming-grid').innerHTML = upcoming.map(m=>{
-    const days = Math.ceil((new Date(m.date)-new Date())/86400000);
-    return `<div class="upcoming-card">
-      <div class="match-venue">${m.home?'🏠 Home Match':'✈️ Away Match'}</div>
-      <div class="upcoming-opp">${m.opponent}</div>
-      <div class="upcoming-date">📅 ${fmtDate(m.date)}</div>
-      <div class="countdown">
-        <span class="days-left">${days>0?days:'Today!'}</span>${days>0?' days to go':''}
-      </div>
-    </div>`;
+function renderUpcoming(){
+  const upcoming=state.matches.filter(m=>m.status==='upcoming');
+  document.getElementById('upcoming-grid').innerHTML=upcoming.map(m=>{
+    const days=Math.ceil((new Date(m.date)-new Date())/86400000);
+    return`<div class="upcoming-card"><div class="match-venue">${m.home?'🏠 Home Match':'✈️ Away Match'}</div><div class="upcoming-opp">${m.opponent}</div><div class="upcoming-date">📅 ${fmtDate(m.date)}</div><div class="countdown"><span class="days-left">${days>0?days:'Today!'}</span>${days>0?' days to go':''}</div></div>`;
   }).join('')||'<div style="color:var(--muted);text-align:center;padding:40px">No upcoming matches scheduled</div>';
 }
 
-// ── AUTH ──────────────────────────────────────────────────────
-function openLoginModal() { document.getElementById('login-error').textContent=''; closeAllModals(); document.getElementById('modal-login').classList.add('open'); setTimeout(()=>document.getElementById('login-user').focus(),300); }
-
-async function doLogin() {
-  const username = document.getElementById('login-user').value.trim();
-  const password = document.getElementById('login-pass').value;
-  const res = await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password})});
-  const d = await res.json();
-  if(d.ok){
-    closeModal('login');
-    setAdmin(true);
-    render();
-    toast('Welcome back, Manager! 👋','success');
-    document.getElementById('login-user').value='';
-    document.getElementById('login-pass').value='';
-  } else {
-    document.getElementById('login-error').textContent = '❌ '+d.error;
+function renderSponsors(){
+  if(!state.sponsors.length){
+    document.getElementById('sponsors-grid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)"><div style="font-size:52px;margin-bottom:12px">🤝</div><div style="font-family:'Bebas Neue';font-size:24px;margin-bottom:8px">No Sponsors Yet</div><div style="font-size:13px">${isAdmin?'Click &quot;+ Add Sponsor&quot; to add your first sponsor.':'Sponsor information coming soon!'}</div></div>`;
+    return;
   }
+  const tierOrder={gold:0,silver:1,bronze:2,partner:3};
+  const sorted=[...state.sponsors].sort((a,b)=>(tierOrder[a.tier]||3)-(tierOrder[b.tier]||3));
+  document.getElementById('sponsors-grid').innerHTML=sorted.map(s=>`<div class="sponsor-card"><div class="sponsor-tier tier-${s.tier}">${s.tier.toUpperCase()}</div><div class="sponsor-logo-box">${s.logo?`<img src="${s.logo}" alt="${s.name}" onerror="this.parentElement.innerHTML='${(s.name||'?').substring(0,2).toUpperCase()}'"/>`:((s.name||'?').substring(0,2).toUpperCase())}</div><div class="sponsor-name">${s.name}</div>${s.desc?`<div class="sponsor-desc">${s.desc}</div>`:''} ${s.website?`<a class="sponsor-website" href="${s.website}" target="_blank">🔗 ${s.website.replace(/^https?:\/\//,'')}</a>`:''} ${isAdmin?`<div class="sponsor-actions"><button class="btn btn-ghost btn-sm" onclick="openEditSponsor(${s.id})">✏️ Edit</button><button class="btn btn-danger btn-sm" onclick="deleteSponsor(${s.id})">🗑 Remove</button></div>`:''}</div>`).join('');
 }
 
-async function doLogout() {
-  await fetch('/api/logout',{method:'POST'});
-  setAdmin(false);
-  render();
-  toast('Logged out','success');
+function renderNews(){
+  if(!state.news.length){
+    document.getElementById('news-grid').innerHTML=`<div style="text-align:center;padding:60px 20px;color:var(--muted)"><div style="font-size:48px;margin-bottom:12px">📰</div><div style="font-family:'Bebas Neue';font-size:24px;margin-bottom:8px">No News Yet</div><div style="font-size:13px">${isAdmin?'Click &quot;+ Post News&quot; to publish your first announcement.':'Check back soon for updates!'}</div></div>`;
+    return;
+  }
+  document.getElementById('news-grid').innerHTML=state.news.map(n=>`<div class="news-card ${n.featured==='true'||n.featured===true?'news-featured':''}"><div class="news-category">${n.category||'General'}${n.featured==='true'||n.featured===true?' <span class="featured-badge">⭐ Featured</span>':''}</div><div class="news-title">${n.title}</div><div class="news-body">${(n.body||'').replace(/\n/g,'<br>')}</div><div class="news-footer"><div class="news-date">📅 ${fmtDate(n.date)}</div>${isAdmin?`<div class="news-actions"><button class="btn btn-ghost btn-sm" onclick="openEditNews(${n.id})">✏️ Edit</button><button class="btn btn-danger btn-sm" onclick="deleteNews(${n.id})">🗑</button></div>`:''}</div></div>`).join('');
 }
 
-// ── PLAYER CRUD ───────────────────────────────────────────────
-function openEditPlayer(id) {
-  const p = state.players.find(x=>x.id===id);
-  if(!p) return;
-  document.getElementById('ep-id').value = p.id;
-  document.getElementById('ep-name').value = p.name;
-  document.getElementById('ep-number').value = p.number;
-  document.getElementById('ep-pos').value = p.position;
-  document.getElementById('ep-goals').value = p.goals;
-  document.getElementById('ep-assists').value = p.assists;
-  document.getElementById('ep-matches').value = p.matches;
-  openModal('edit-player');
+// AUTH
+function openLoginModal(){document.getElementById('login-error').textContent='';closeAllModals();document.getElementById('modal-login').classList.add('open');setTimeout(()=>document.getElementById('login-user').focus(),300);}
+async function doLogin(){
+  const u=document.getElementById('login-user').value.trim(),p=document.getElementById('login-pass').value;
+  const r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})});
+  const d=await r.json();
+  if(d.ok){closeModal('login');setAdmin(true);render();toast('Welcome back, Manager! 👋','success');document.getElementById('login-user').value='';document.getElementById('login-pass').value='';}
+  else{document.getElementById('login-error').textContent='❌ '+d.error;}
 }
+async function doLogout(){await fetch('/api/logout',{method:'POST'});setAdmin(false);render();toast('Logged out','success');}
 
-async function saveEditPlayer() {
-  const id = +document.getElementById('ep-id').value;
-  const data = {
-    name: document.getElementById('ep-name').value.trim(),
-    number: +document.getElementById('ep-number').value,
-    position: document.getElementById('ep-pos').value,
-    goals: +document.getElementById('ep-goals').value,
-    assists: +document.getElementById('ep-assists').value,
-    matches: +document.getElementById('ep-matches').value,
-  };
-  if(!data.name) return toast('Name required','error');
-  await fetch('/api/players/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-  closeModal('edit-player');
-  toast('Player updated! ✅','success');
-  await load();
-}
+// PLAYER CRUD
+function openEditPlayer(id){const p=state.players.find(x=>x.id===id);if(!p)return;document.getElementById('ep-id').value=p.id;document.getElementById('ep-name').value=p.name;document.getElementById('ep-number').value=p.number;document.getElementById('ep-pos').value=p.position;document.getElementById('ep-goals').value=p.goals;document.getElementById('ep-assists').value=p.assists;document.getElementById('ep-matches').value=p.matches;openModal('edit-player');}
+async function saveEditPlayer(){const id=+document.getElementById('ep-id').value;const data={name:document.getElementById('ep-name').value.trim(),number:+document.getElementById('ep-number').value,position:document.getElementById('ep-pos').value,goals:+document.getElementById('ep-goals').value,assists:+document.getElementById('ep-assists').value,matches:+document.getElementById('ep-matches').value};if(!data.name)return toast('Name required','error');await fetch('/api/players/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});closeModal('edit-player');toast('Player updated! ✅','success');await load();}
+async function addPlayer(){const name=document.getElementById('p-name').value.trim();if(!name)return toast('Please enter a name','error');const p={name,number:+document.getElementById('p-number').value||0,position:document.getElementById('p-pos').value,goals:+document.getElementById('p-goals').value||0,assists:+document.getElementById('p-assists').value||0,matches:+document.getElementById('p-matches').value||0};await fetch('/api/players',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});closeModal('add-player');toast('Player added! ⚽','success');document.getElementById('p-name').value='';document.getElementById('p-number').value='';await load();}
+async function deletePlayer(id){if(!confirm('Remove this player?'))return;await fetch('/api/players/'+id,{method:'DELETE'});toast('Player removed','success');await load();}
 
-async function addPlayer() {
-  const name = document.getElementById('p-name').value.trim();
-  if(!name) return toast('Please enter a name','error');
-  const p = {
-    name, number:+document.getElementById('p-number').value||0,
-    position:document.getElementById('p-pos').value,
-    goals:+document.getElementById('p-goals').value||0,
-    assists:+document.getElementById('p-assists').value||0,
-    matches:+document.getElementById('p-matches').value||0,
-  };
-  await fetch('/api/players',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});
-  closeModal('add-player');
-  toast('Player added! ⚽','success');
-  document.getElementById('p-name').value=''; document.getElementById('p-number').value='';
-  await load();
-}
+// MATCH CRUD
+function openEditMatch(id){const m=state.matches.find(x=>x.id===id);if(!m)return;document.getElementById('em-id').value=m.id;document.getElementById('em-opp').value=m.opponent;document.getElementById('em-date').value=m.date;document.getElementById('em-home').value=m.home?'true':'false';document.getElementById('em-status').value=m.status;document.getElementById('em-us').value=m.score_us??0;document.getElementById('em-them').value=m.score_them??0;toggleScore(m.status,'em-score-fields');openModal('edit-match');}
+async function saveEditMatch(){const id=+document.getElementById('em-id').value;const status=document.getElementById('em-status').value;const data={opponent:document.getElementById('em-opp').value.trim(),date:document.getElementById('em-date').value,home:document.getElementById('em-home').value==='true',status,score_us:status==='completed'?+document.getElementById('em-us').value:null,score_them:status==='completed'?+document.getElementById('em-them').value:null};if(!data.opponent)return toast('Opponent name required','error');await fetch('/api/matches/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});closeModal('edit-match');toast('Match updated! ✅','success');await load();}
+async function addMatch(){const opp=document.getElementById('m-opp').value.trim();if(!opp)return toast('Enter opponent name','error');const status=document.getElementById('m-status').value;const m={opponent:opp,date:document.getElementById('m-date').value||new Date().toISOString().split('T')[0],home:document.getElementById('m-home').value==='true',status,score_us:status==='completed'?+document.getElementById('m-us').value:null,score_them:status==='completed'?+document.getElementById('m-them').value:null,scorers:[]};await fetch('/api/matches',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(m)});closeModal('add-match');toast('Match added!','success');document.getElementById('m-opp').value='';await load();}
+async function deleteMatch(id){if(!confirm('Delete this match?'))return;await fetch('/api/matches/'+id,{method:'DELETE'});toast('Match deleted','success');await load();}
 
-async function deletePlayer(id) {
-  if(!confirm('Remove this player from the squad?')) return;
-  await fetch('/api/players/'+id,{method:'DELETE'});
-  toast('Player removed','success');
-  await load();
-}
+// ATTENDANCE
+function openAttendanceModal(){const sel=document.getElementById('att-match-sel');sel.innerHTML=state.matches.map(m=>`<option value="${m.date}">${fmtDate(m.date)} vs ${m.opponent}</option>`).join('');const fill=()=>{const ex=state.attendance[sel.value]||[];document.getElementById('att-player-list').innerHTML=state.players.map(p=>`<label style="display:flex;align-items:center;gap:6px;padding:5px 10px;background:var(--card2);border-radius:8px;cursor:pointer;font-size:13px;"><input type="checkbox" value="${p.name}" ${ex.includes(p.name)?'checked':''}/> ${p.name}</label>`).join('');};sel.onchange=fill;fill();openModal('mark-attendance');}
+async function saveAttendance(){const date=document.getElementById('att-match-sel').value;const players=[...document.querySelectorAll('#att-player-list input:checked')].map(i=>i.value);await fetch('/api/attendance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date,players})});closeModal('mark-attendance');toast('Attendance saved! ✅','success');await load();}
 
-// ── MATCH CRUD ────────────────────────────────────────────────
-function openEditMatch(id) {
-  const m = state.matches.find(x=>x.id===id);
-  if(!m) return;
-  document.getElementById('em-id').value = m.id;
-  document.getElementById('em-opp').value = m.opponent;
-  document.getElementById('em-date').value = m.date;
-  document.getElementById('em-home').value = m.home ? 'true' : 'false';
-  document.getElementById('em-status').value = m.status;
-  document.getElementById('em-us').value = m.score_us ?? 0;
-  document.getElementById('em-them').value = m.score_them ?? 0;
-  toggleScore(m.status,'em-score-fields');
-  openModal('edit-match');
-}
+// SPONSOR CRUD
+async function addSponsor(){const name=document.getElementById('sp-name').value.trim();if(!name)return toast('Sponsor name required','error');const s={name,tier:document.getElementById('sp-tier').value,desc:document.getElementById('sp-desc').value.trim(),website:document.getElementById('sp-website').value.trim(),logo:document.getElementById('sp-logo').value.trim()};await fetch('/api/sponsors',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)});closeModal('add-sponsor');toast('Sponsor added! 🤝','success');['sp-name','sp-desc','sp-website','sp-logo'].forEach(id=>document.getElementById(id).value='');await load();}
+function openEditSponsor(id){const s=state.sponsors.find(x=>x.id===id);if(!s)return;document.getElementById('esp-id').value=s.id;document.getElementById('esp-name').value=s.name||'';document.getElementById('esp-tier').value=s.tier||'partner';document.getElementById('esp-desc').value=s.desc||'';document.getElementById('esp-website').value=s.website||'';document.getElementById('esp-logo').value=s.logo||'';openModal('edit-sponsor');}
+async function saveEditSponsor(){const id=+document.getElementById('esp-id').value;const name=document.getElementById('esp-name').value.trim();if(!name)return toast('Sponsor name required','error');const s={name,tier:document.getElementById('esp-tier').value,desc:document.getElementById('esp-desc').value.trim(),website:document.getElementById('esp-website').value.trim(),logo:document.getElementById('esp-logo').value.trim()};await fetch('/api/sponsors/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)});closeModal('edit-sponsor');toast('Sponsor updated! ✅','success');await load();}
+async function deleteSponsor(id){if(!confirm('Remove this sponsor?'))return;await fetch('/api/sponsors/'+id,{method:'DELETE'});toast('Sponsor removed','success');await load();}
 
-async function saveEditMatch() {
-  const id = +document.getElementById('em-id').value;
-  const status = document.getElementById('em-status').value;
-  const data = {
-    opponent: document.getElementById('em-opp').value.trim(),
-    date: document.getElementById('em-date').value,
-    home: document.getElementById('em-home').value === 'true',
-    status,
-    score_us: status==='completed' ? +document.getElementById('em-us').value : null,
-    score_them: status==='completed' ? +document.getElementById('em-them').value : null,
-  };
-  if(!data.opponent) return toast('Opponent name required','error');
-  await fetch('/api/matches/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-  closeModal('edit-match');
-  toast('Match updated! ✅','success');
-  await load();
-}
+// NEWS CRUD
+async function addNews(){const title=document.getElementById('n-title').value.trim();if(!title)return toast('Title required','error');const body=document.getElementById('n-body').value.trim();if(!body)return toast('Content required','error');const n={title,body,category:document.getElementById('n-category').value,date:document.getElementById('n-date').value||new Date().toISOString().split('T')[0],featured:document.getElementById('n-featured').value};await fetch('/api/news',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(n)});closeModal('add-news');toast('News published! 📰','success');document.getElementById('n-title').value='';document.getElementById('n-body').value='';await load();}
+function openEditNews(id){const n=state.news.find(x=>x.id===id);if(!n)return;document.getElementById('en-id').value=n.id;document.getElementById('en-title').value=n.title||'';document.getElementById('en-category').value=n.category||'General';document.getElementById('en-date').value=n.date||'';document.getElementById('en-body').value=n.body||'';document.getElementById('en-featured').value=String(n.featured||'false');openModal('edit-news');}
+async function saveEditNews(){const id=+document.getElementById('en-id').value;const title=document.getElementById('en-title').value.trim();if(!title)return toast('Title required','error');const body=document.getElementById('en-body').value.trim();if(!body)return toast('Content required','error');const n={title,body,category:document.getElementById('en-category').value,date:document.getElementById('en-date').value,featured:document.getElementById('en-featured').value};await fetch('/api/news/'+id,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(n)});closeModal('edit-news');toast('News updated! ✅','success');await load();}
+async function deleteNews(id){if(!confirm('Delete this news post?'))return;await fetch('/api/news/'+id,{method:'DELETE'});toast('News deleted','success');await load();}
 
-async function addMatch() {
-  const opp = document.getElementById('m-opp').value.trim();
-  if(!opp) return toast('Enter opponent name','error');
-  const status = document.getElementById('m-status').value;
-  const m = {
-    opponent:opp,
-    date:document.getElementById('m-date').value||new Date().toISOString().split('T')[0],
-    home:document.getElementById('m-home').value==='true',
-    status,
-    score_us:status==='completed'?+document.getElementById('m-us').value:null,
-    score_them:status==='completed'?+document.getElementById('m-them').value:null,
-    scorers:[]
-  };
-  await fetch('/api/matches',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(m)});
-  closeModal('add-match');
-  toast('Match added!','success');
-  document.getElementById('m-opp').value='';
-  await load();
-}
+// NAV / MODALS
+function showSection(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.getElementById('section-'+id).classList.add('active');document.getElementById('nav-'+id).classList.add('active');}
+function filterMatches(f,btn){matchFilter=f;document.querySelectorAll('#section-matches .tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');renderMatches();}
+function showLB(field,btn){document.querySelectorAll('#section-leaderboard .tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');renderLB(field);}
+function openModal(id){if(id==='mark-attendance'){openAttendanceModal();return;}document.getElementById('modal-'+id).classList.add('open');}
+function closeModal(id){document.getElementById('modal-'+id).classList.remove('open');}
+function closeAllModals(){document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open'));}
+function toggleScore(val,fieldId){document.getElementById(fieldId).style.display=val==='completed'?'flex':'none';}
 
-async function deleteMatch(id) {
-  if(!confirm('Delete this match?')) return;
-  await fetch('/api/matches/'+id,{method:'DELETE'});
-  toast('Match deleted','success');
-  await load();
-}
+function scoreInfo(m){if(m.score_us>m.score_them)return['W','score-win'];if(m.score_us<m.score_them)return['L','score-loss'];return['D','score-draw'];}
+function fmtDate(d){return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
+function toast(msg,type='success'){const t=document.createElement('div');t.className=`toast ${type}`;t.innerHTML=`${type==='success'?'✅':'❌'} ${msg}`;document.getElementById('toasts').appendChild(t);setTimeout(()=>t.remove(),3000);}
 
-// ── ATTENDANCE ────────────────────────────────────────────────
-function openAttendanceModal() {
-  const sel = document.getElementById('att-match-sel');
-  sel.innerHTML = state.matches.map(m=>`<option value="${m.date}">${fmtDate(m.date)} vs ${m.opponent}</option>`).join('');
-  const fillPlayers = () => {
-    const ex = state.attendance[sel.value]||[];
-    document.getElementById('att-player-list').innerHTML = state.players.map(p=>`
-      <label style="display:flex;align-items:center;gap:6px;padding:5px 10px;background:var(--card2);border-radius:8px;cursor:pointer;font-size:13px;">
-        <input type="checkbox" value="${p.name}" ${ex.includes(p.name)?'checked':''}/> ${p.name}
-      </label>`).join('');
-  };
-  sel.onchange = fillPlayers;
-  fillPlayers();
-  openModal('mark-attendance');
-}
-
-async function saveAttendance() {
-  const date = document.getElementById('att-match-sel').value;
-  const players = [...document.querySelectorAll('#att-player-list input:checked')].map(i=>i.value);
-  await fetch('/api/attendance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({date,players})});
-  closeModal('mark-attendance');
-  toast('Attendance saved! ✅','success');
-  await load();
-}
-
-// ── NAV / MODALS ──────────────────────────────────────────────
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('section-'+id).classList.add('active');
-  document.getElementById('nav-'+id).classList.add('active');
-}
-
-function filterMatches(f,btn) {
-  matchFilter=f;
-  document.querySelectorAll('#section-matches .tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active'); renderMatches();
-}
-
-function showLB(field,btn) {
-  document.querySelectorAll('#section-leaderboard .tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active'); renderLB(field);
-}
-
-function openModal(id) {
-  if(id==='mark-attendance') { openAttendanceModal(); return; }
-  document.getElementById('modal-'+id).classList.add('open');
-}
-function closeModal(id) { document.getElementById('modal-'+id).classList.remove('open'); }
-function closeAllModals() { document.querySelectorAll('.modal-overlay').forEach(m=>m.classList.remove('open')); }
-
-function toggleScore(val, fieldId) {
-  document.getElementById(fieldId).style.display = val==='completed'?'flex':'none';
-}
-
-// ── HELPERS ───────────────────────────────────────────────────
-function scoreInfo(m) {
-  if(m.score_us > m.score_them) return ['W','score-win'];
-  if(m.score_us < m.score_them) return ['L','score-loss'];
-  return ['D','score-draw'];
-}
-
-function fmtDate(d) {
-  return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
-}
-
-function toast(msg,type='success') {
-  const t = document.createElement('div');
-  t.className=`toast ${type}`;
-  t.innerHTML=`${type==='success'?'✅':'❌'} ${msg}`;
-  document.getElementById('toasts').appendChild(t);
-  setTimeout(()=>t.remove(),3000);
-}
-
-// Close modal on backdrop click
-document.querySelectorAll('.modal-overlay').forEach(m=>{
-  m.addEventListener('click',e=>{ if(e.target===m) m.classList.remove('open'); });
-});
-
+document.querySelectorAll('.modal-overlay').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});});
+document.getElementById('n-date').value=new Date().toISOString().split('T')[0];
 load();
 </script>
 </body>
